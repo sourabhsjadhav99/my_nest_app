@@ -12,32 +12,6 @@ export class EventsService {
     private eventRepository: Repository<Event>,
   ) {}
 
-  // async createEvent(eventData: CreateEventDto): Promise<Event> {
-  //   const event = this.eventRepository.create(eventData);
-  //   return this.eventRepository.save(event);
-  // }
-
-  // async getAllEvents(): Promise<Event[]> {
-  //   return this.eventRepository.find();
-  // }
-
-  // async getEventById(id: number): Promise<Event> {
-  //   const event = await this.eventRepository.findOne({ where: { id } });
-  //   if (!event) {
-  //     throw new NotFoundException(`Event with ID ${id} not found`);
-  //   }
-  //   return event;
-  // }
-
-  // async updateEvent(id: number, updateData: UpdateEventDto): Promise<Event> {
-  //   await this.eventRepository.update(id, updateData);
-  //   return this.getEventById(id);
-  // }
-
-  // async deleteEvent(id: number): Promise<void> {
-  //   await this.eventRepository.delete(id);
-  // }
-
   async createEvent(eventData: CreateEventDto): Promise<Event> {
     try {
       const event = this.eventRepository.create(eventData);

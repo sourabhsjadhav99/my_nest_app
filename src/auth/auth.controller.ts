@@ -18,6 +18,7 @@ export class AuthController {
   async login(@CurrentUser() user: User) {
     return {
       userId: user.id,
+      role:user.role,
       token: this.authService.getTokenForUser(user)
     }
   }

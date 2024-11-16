@@ -1,9 +1,10 @@
-import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
+import { BadRequestException, Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { AuthService } from "./auth.service";
 import { CreateUserDto } from "./input/create.user.dto";
 import { User } from "./user.entity";
+import { Role } from "./roles.enum";
 
 @Controller('api/user')
 export class UsersController {
@@ -13,6 +14,7 @@ export class UsersController {
     private readonly userRepository: Repository<User>
   ) { }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post('register')
   async create(@Body() createUserDto: CreateUserDto) {
     const user = new User();
@@ -37,6 +39,7 @@ export class UsersController {
     user.email = createUserDto.email;
     user.firstName = createUserDto.firstName;
     user.lastName = createUserDto.lastName;
+    user.role = createUserDto.role
 
     return {
       ...(await this.userRepository.save(user)),

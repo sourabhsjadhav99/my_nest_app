@@ -1,4 +1,5 @@
-import { IsEmail, Length } from "class-validator";
+import { IsEmail, IsIn, Length } from 'class-validator';
+import { Role } from '../roles.enum';
 
 export class CreateUserDto {
   @Length(5)
@@ -15,7 +16,10 @@ export class CreateUserDto {
 
   @Length(2)
   lastName: string;
-  
+
   @IsEmail()
   email: string;
+
+  @IsIn([Role.User, Role.Admin])
+  role:  Role;
 }
