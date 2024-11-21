@@ -5,10 +5,10 @@ import { Event } from "src/events/event.entity";
 export const typeOrmConfig:TypeOrmModuleOptions={
     type: 'mysql',
     host: 'localhost',
-    port: 3307,
+    port: 3306,
     username: 'root',
-    password: 'Sourabh@1999',
-    database: 'nest_udemy',
+    password: 'impelox',
+    database: 'nest_db',
     autoLoadEntities: false,
     entities: [User,Event],
     synchronize: true,
